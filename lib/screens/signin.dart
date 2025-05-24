@@ -122,7 +122,7 @@ class _SigninState extends State<Signin> {
         children: [
           Image.asset('assets/signin/IMG_6110.jpg', width: double.infinity),
           Padding(
-            padding: const EdgeInsets.only(top: 440),
+            padding: const EdgeInsets.only(top: 410),
             child: Container(
               decoration: const BoxDecoration(
                 color: Colors.white,
@@ -174,7 +174,7 @@ class _SigninState extends State<Signin> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 35),
                   Center(
                     child: SizedBox(
                       width: 300,

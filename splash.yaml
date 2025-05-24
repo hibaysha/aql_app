@@ -1,10 +1,7 @@
 flutter_native_splash:
   color: "#FFFFFF"
-  image: assets/logo/aql-logo.jpg
+  image: assets/logo/aql_logo.jpg
   android: true
   ios: true
   android_gravity: center
-  scaleType: fitCenter
   ios_content_mode: scaleAspectFit
-
-  
