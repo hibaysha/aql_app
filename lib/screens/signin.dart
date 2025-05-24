@@ -131,7 +131,7 @@ class _SigninState extends State<Signin> {
                   topRight: Radius.circular(40),
                 ),
               ),
-              height: 500,
+              height: 450,
               width: double.infinity,
               padding: const EdgeInsets.all(25.0),
               child: Column(
