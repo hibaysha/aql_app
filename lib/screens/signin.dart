@@ -122,7 +122,7 @@ class _SigninState extends State<Signin> {
         children: [
           Image.asset('assets/signin/IMG_6110.jpg', width: double.infinity),
           Padding(
-            padding: const EdgeInsets.only(top: 460),
+            padding: const EdgeInsets.only(top: 440),
             child: Container(
               decoration: const BoxDecoration(
                 color: Colors.white,
