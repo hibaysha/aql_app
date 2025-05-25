@@ -118,12 +118,19 @@ class _SigninState extends State<Signin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false, // Prevents any automatic layout shifts
       body: Stack(
         children: [
-          Image.asset('assets/signin/IMG_6110.jpg', width: double.infinity),
+          Image.asset(
+            'assets/signin/IMG_6110.jpg',
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 410),
             child: Container(
+              height: 500,
+              width: double.infinity,
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -131,83 +138,87 @@ class _SigninState extends State<Signin> {
                   topRight: Radius.circular(40),
                 ),
               ),
-              height: 450,
-              width: double.infinity,
               padding: const EdgeInsets.all(25.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 15),
-                  const Text(
-                    'Sign in',
-                    style: TextStyle(fontSize: 29, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'Please enter the details \nbelow to continue',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Color.fromARGB(255, 133, 133, 133),
-                    ),
-                  ),
-                  const SizedBox(height: 30),
-                  TextField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.email),
-                      hintText: 'Email ID',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+              child: ClipRect(
+                // <-- key addition here
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 15),
+                    const Text(
+                      'Sign in',
+                      style: TextStyle(
+                        fontSize: 29,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  TextField(
-                    controller: _passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock),
-                      hintText: 'Password',
-                      suffixIcon: const Icon(Icons.visibility),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'Please enter the details \nbelow to continue',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Color.fromARGB(255, 133, 133, 133),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 35),
-                  Center(
-                    child: SizedBox(
-                      width: 300,
-                      child: ElevatedButton(
-                        onPressed: loginUser,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(
-                            255,
-                            73,
-                            186,
-                            147,
-                          ),
-                          padding: const EdgeInsets.all(18),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                        ),
-                        child: const Text(
-                          'Sign In',
-                          style: TextStyle(color: Colors.white),
+                    const SizedBox(height: 30),
+                    TextField(
+                      controller: _emailController,
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.email),
+                        hintText: 'Email ID',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text("Don't have an account? "),
-                      Text('Sign up', style: TextStyle(color: Colors.blue)),
-                    ],
-                  ),
-                ],
+                    const SizedBox(height: 20),
+                    TextField(
+                      controller: _passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.lock),
+                        hintText: 'Password',
+                        suffixIcon: const Icon(Icons.visibility),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 35),
+                    Center(
+                      child: SizedBox(
+                        width: 300,
+                        child: ElevatedButton(
+                          onPressed: loginUser,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromARGB(
+                              255,
+                              73,
+                              186,
+                              147,
+                            ),
+                            padding: const EdgeInsets.all(18),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                          child: const Text(
+                            'Sign In',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text("Don't have an account? "),
+                        Text('Sign up', style: TextStyle(color: Colors.blue)),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
