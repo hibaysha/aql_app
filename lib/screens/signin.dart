@@ -1,4 +1,5 @@
 import 'package:aql_app/provider.dart';
+import 'package:aql_app/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -51,8 +52,14 @@ class _SigninState extends State<Signin> {
               content: Text("Welcome ${provider.user ?? 'User'}"),
               actions: [
                 TextButton(
-                  onPressed: () => Navigator.of(context).pop(),
                   child: const Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                    );
+                  },
                 ),
               ],
             ),

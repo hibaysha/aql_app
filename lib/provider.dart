@@ -6,15 +6,19 @@ class SignInProvider with ChangeNotifier {
   String? _user;
   bool _isLoading = false;
   String? _errorMessage;
+  String? _userName;
+  String? _userEmail;
+  String? _userStudent;
 
   String? get user => _user;
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
   bool get isAuthenticated => _user != null;
+  String? get userName => _userName;
+  String? get userEmail => _userEmail;
+  String? get userStudent => _userStudent;
 
   static const String _baseUrl = 'https://entrance-test-api.datahex.co/api/v1';
-
-  String? get userName => null;
 
   Future<bool> signIn(String email, String password) async {
     if (email.isEmpty || password.isEmpty) {
@@ -29,7 +33,6 @@ class SignInProvider with ChangeNotifier {
 
     try {
       final url = Uri.parse('$_baseUrl/auth/login/');
-      // print(json.decode())
 
       final response = await http.post(
         url,
@@ -39,17 +42,22 @@ class SignInProvider with ChangeNotifier {
       if (response.statusCode == 200) {
         final responseBody = jsonDecode(response.body);
         //
+        debugPrint(response.body);
         print(
-          "login response ${responseBody['success']}  email is ${responseBody['user']['email']}",
+          "login response ${responseBody['success']}  token is ${responseBody['token']}",
+        );
+        print(
+          "login response ${responseBody['success']} role is ${responseBody['menu']}",
         );
         final isSuccess = responseBody['success'] == true;
 
         if (isSuccess && responseBody['user'] != null) {
           final data = responseBody['user'];
-          // String userName = 'user';
 
           if (data is Map<String, dynamic>) {}
-          _user = userName;
+          _userName = responseBody['user']['fullName'];
+          _userEmail = responseBody['user']['email'];
+          _userStudent = responseBody['user']['student'];
           _isLoading = false;
           _errorMessage = null;
           notifyListeners();
