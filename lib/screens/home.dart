@@ -1,4 +1,5 @@
 import 'package:aql_app/provider.dart';
+import 'package:aql_app/screens/next_page/next.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +23,15 @@ class _HomePageState extends State<HomePage> {
                 Text('${provider.userName}'),
                 Text('${provider.userEmail}'),
                 Text('${provider.userStudent}'),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => NextPage()),
+                    );
+                  },
+                  child: Text('next'),
+                ),
               ],
             ),
           );

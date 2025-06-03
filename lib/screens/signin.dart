@@ -1,3 +1,6 @@
+import 'package:aql_app/constants/app_images.dart';
+import 'package:aql_app/core_components/constants/dx_colors.dart';
+
 import 'package:aql_app/provider.dart';
 import 'package:aql_app/screens/home.dart';
 import 'package:flutter/material.dart';
@@ -91,7 +94,7 @@ class _SigninState extends State<Signin> {
           return Stack(
             children: [
               Image.asset(
-                'assets/signin/IMG_6110.jpg',
+                AppImages.boyimage,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
@@ -101,7 +104,7 @@ class _SigninState extends State<Signin> {
                   height: 500,
                   width: double.infinity,
                   decoration: const BoxDecoration(
-                    color: Colors.white,
+                    color: DxColors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(40),
                       topRight: Radius.circular(40),
