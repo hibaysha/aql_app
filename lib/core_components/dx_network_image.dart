@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'constants/dx_colors.dart';
-import '../constants/dx_images.dart';
 
 class DxNetworkImage extends StatelessWidget {
   final String? imageUrl;
@@ -45,19 +43,17 @@ class DxNetworkImage extends StatelessWidget {
       placeholderFadeInDuration: placeholderFadeInDuration!,
       placeholder: (context, url) => placeholder ?? _buildLoadingWidget(),
       errorWidget: (context, url, error) => errorWidget ?? _buildErrorWidget(),
-      imageBuilder: (context, imageProvider) => Container(
-        width: width,
-        height: height,
-        decoration: BoxDecoration(
-          borderRadius: borderRadius,
-          shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
-          border: border,
-          image: DecorationImage(
-            image: imageProvider,
-            fit: fit,
+      imageBuilder:
+          (context, imageProvider) => Container(
+            width: width,
+            height: height,
+            decoration: BoxDecoration(
+              borderRadius: borderRadius,
+              shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
+              border: border,
+              image: DecorationImage(image: imageProvider, fit: fit),
+            ),
           ),
-        ),
-      ),
     );
   }
 
@@ -88,20 +84,19 @@ class DxNetworkImage extends StatelessWidget {
         borderRadius: borderRadius,
         shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
         border: border,
-        image: defaultAsset != null
-            ? DecorationImage(
-                image: AssetImage(defaultAsset!),
-                fit: fit,
-              )
-            : null,
+        image:
+            defaultAsset != null
+                ? DecorationImage(image: AssetImage(defaultAsset!), fit: fit)
+                : null,
       ),
-      child: defaultAsset == null
-          ? Icon(
-              Icons.error_outline,
-              size: width * 0.3,
-              color: DxColors.stateError,
-            )
-          : null,
+      child:
+          defaultAsset == null
+              ? Icon(
+                Icons.error_outline,
+                size: width * 0.3,
+                color: DxColors.stateError,
+              )
+              : null,
     );
   }
-} 
+}

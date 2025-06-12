@@ -1,5 +1,6 @@
 import 'package:aql_app/provider.dart';
-import 'package:aql_app/screens/next_page/next.dart';
+import 'package:aql_app/screens/onboarding_streams/stream_selection.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +23,6 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Text('${provider.userName}'),
                 Text('${provider.userEmail}'),
-                Text('${provider.userStudent}'),
                 TextButton(
                   onPressed: () {
                     Navigator.push(

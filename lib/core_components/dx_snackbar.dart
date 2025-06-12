@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 import 'constants/dx_colors.dart';
 import 'dx_text.dart';
 
-enum DxSnackbarType {
-  success,
-  error,
-  info,
-  warning,
-}
+enum DxSnackbarType { success, error, info, warning }
 
 class DxSnackbar {
   static void show({
@@ -24,8 +19,10 @@ class DxSnackbar {
           const SizedBox(width: 12),
           Expanded(
             child: DxText(
+              '',
               text: message,
               type: DxTextType.p2,
+
               color: DxColors.white,
             ),
           ),
@@ -38,9 +35,7 @@ class DxSnackbar {
         right: 16,
       ),
       backgroundColor: _getBackgroundColor(type),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       duration: duration,
       elevation: 0,
     );
@@ -79,4 +74,4 @@ class DxSnackbar {
         return DxColors.primary.withAlpha(100);
     }
   }
-} 
+}

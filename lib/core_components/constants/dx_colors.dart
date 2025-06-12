@@ -1,13 +1,47 @@
 import 'package:flutter/material.dart';
 
 class DxColors {
+  //
+  static const Color pastelgreen = Color(0xffecfff0);
+  static const Color pastelpink = Color(0xffffecf3);
+  static const Color pastelyellow = Color(0xfffff537);
+  static const Color pastelblue = Color(0xffdaffff);
+  static const Color pastelbluue = Color(0xffecf0ff);
+
+  //pastel containers
+  static const Color pblu = Color(0xffecfdff);
+  static const Color pgreen = Color(0xffecfff0);
+  static const Color porange = Color(0xfffff5e7);
+  static const Color ppink = Color(0xffffecf3);
+
+  static const Color bgclr = Color(0xfff9f8f8);
+
+  static const Color skip = Color(0xff14bf9e);
+  static const Color notifsred = Color(0xffd72344);
+  static const Color skipcontnr = Color(0xffeffffc);
+  static const Color circlgreen = Color(0xff27bb50);
+  static const Color streamcntnr = Color(0xfffff5e7);
+  static const Color red = Color(0xffff3b30);
+  static const Color greencntr = Color(0xffecfff0);
+  static const Color greyborder = Color(0xffd9d9d9);
+  static const Color greyctnrbrdr = Color(0xffd9d9d9);
+  static const Color naviconclr = Color(0xff00946a);
+  static const Color navgrey = Color(0xff324b4f);
+  static const Color subtextclr = Color(0xff525866);
+  static const Color circleicon = Color(0xffffb743);
+  static const Color ylwcontainer = Color(0xfffff5e7);
+  static const Color greencontainer = Color(0xffecfff0);
+
   // Transparent colors
   static const Color transparent = Colors.transparent;
   static const Color white = Color(0xffFFFFFF);
   static const Color black = Color(0xff000000);
   // Primary colors
   static const Color primary = Color(0xFF22C58C);
-  static const Color secondary = Color(0x2EFFFFFF); // 0x2E gives approximately 18% opacity (0x2E/0xFF ≈ 0.18)
+  static const Color secondary = Color(
+    0x2EFFFFFF,
+  ); // 0x2E gives approximately 18% opacity (0x2E/0xFF ≈ 0.18)
+
   static const Color secondary2 = Color(0x8A898888);
   static const Color secondary3 = Color(0xff364365);
   static const Color secondary4 = Color(0xff898888);

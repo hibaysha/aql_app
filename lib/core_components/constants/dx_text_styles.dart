@@ -41,7 +41,7 @@ class DxTextStyles {
   static TextStyle primaryFont700(double size, Color color) =>
       GoogleFonts.inter(
         fontSize: size,
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w500,
         color: color,
         height: textHeight,
       );

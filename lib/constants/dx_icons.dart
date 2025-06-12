@@ -2,6 +2,26 @@ class DxIcons {
   // Icon root path
   static const String _iconRoot = 'assets/icons/';
 
+  //homescreen
+  static const String docu = '${_iconRoot}document-text.svg';
+  static const String crown = '${_iconRoot}fi_6941697.svg';
+  static const String bookmark = '${_iconRoot}Frame 1000003025 (1).svg';
+  static const String book = '${_iconRoot}Frame 1000003025.svg';
+  static const String cap = '${_iconRoot}Frame.svg';
+  static const String home = '${_iconRoot}home.svg';
+  static const String teacher = '${_iconRoot}teacher.svg';
+  static const String tick = '${_iconRoot}tick-circle.svg';
+  static const String timer = '${_iconRoot}timer.svg';
+  static const String user = '${_iconRoot}user.svg';
+  static const String verify = '${_iconRoot}verify.svg';
+  static const String notifs = '${_iconRoot}notification.png';
+  static const String notpad = '${_iconRoot}Layer_1.png';
+  static const String back = '${_iconRoot}back-arrow.svg';
+  static const String search = '${_iconRoot}search-normal.png';
+  static const String signout = '${_iconRoot}SignOut.svg';
+
+  static const String arrowdwn = '${_iconRoot}arrow-left.svg';
+
   // login icons
   static const String loginMail = '${_iconRoot}loginMail.svg';
   static const String loginPassword = '${_iconRoot}loginPassword.svg';
@@ -17,7 +37,7 @@ class DxIcons {
   // static const String filter = '${_iconRoot}filter.svg';
   // static const String add = '${_iconRoot}add.svg';
   static const String edit = '${_iconRoot}edit.svg';
-  static const String timer = '${_iconRoot}timer.svg';
+  static const String timerr = '${_iconRoot}timer.svg';
   static const String arrowRightUp = '${_iconRoot}arrowRightUp.svg';
   static const String email = '${_iconRoot}trans_email_icon.svg';
   static const String phone = '${_iconRoot}trans_call_icon.svg';

@@ -10,18 +10,17 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: DxColors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DxText(text: title, type: DxTextType.h1, color: DxColors.stateAway),
+          DxText('', text: title, type: DxTextType.h1, color: DxColors.black),
           DxText(
+            '',
             text: subtitle,
-            type: DxTextType.h5,
-            color: DxColors.stateFeature,
+            type: DxTextType.h6,
+            color: DxColors.neutral600,
           ),
         ],
       ),

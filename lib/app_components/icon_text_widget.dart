@@ -5,7 +5,7 @@ import '../core_components/dx_icon.dart';
 import '../core_components/dx_text.dart';
 
 class IconTextWidget extends StatelessWidget {
-  final String text;
+  final String? text;
   final String icon;
   final Color? iconColor;
   final double? iconSize;
@@ -15,7 +15,7 @@ class IconTextWidget extends StatelessWidget {
 
   const IconTextWidget({
     super.key,
-    required this.text,
+    this.text,
     this.icon = DxIcons.edit,
     this.iconColor = DxColors.white,
     this.iconSize = 20,
@@ -32,7 +32,8 @@ class IconTextWidget extends StatelessWidget {
         DxIcon(icon, color: iconColor, size: iconSize),
         SizedBox(width: spacing),
         DxText(
-          text: text,
+          text ?? '',
+          text: text ?? '',
           type: textType,
           color: textColor,
           overflow: TextOverflow.ellipsis,

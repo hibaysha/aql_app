@@ -47,15 +47,9 @@ class DxStaticCard extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 8),
-              DxText(
-                text: title,
-                type: DxTextType.overline,
-              ),
+              DxText('', text: title, type: DxTextType.overline),
               Spacer(),
-              DxText(
-                text: count.toString(),
-                type: DxTextType.h1,
-              ),
+              DxText('', text: count.toString(), type: DxTextType.h1),
             ],
           ),
           SizedBox(height: 24),
@@ -86,6 +80,7 @@ class DxStaticCard extends StatelessWidget {
                     ),
                     Center(
                       child: DxText(
+                        '',
                         text: "${(percentage * 100).toInt()}%",
                         type: DxTextType.h3,
                       ),
@@ -99,4 +94,4 @@ class DxStaticCard extends StatelessWidget {
       ),
     );
   }
-} 
+}

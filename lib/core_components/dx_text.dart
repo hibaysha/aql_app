@@ -9,6 +9,7 @@ enum DxTextType {
   h4, // Heading 4
   h5, // Heading 5
   h6, // Heading 6
+  h7,
   p1, // Paragraph 1
   p2, // Paragraph 2
   p3, // Paragraph 3
@@ -31,7 +32,8 @@ class DxText extends StatelessWidget {
   final double? height;
   final bool softWrap;
 
-  const DxText({
+  const DxText(
+    String s, {
     super.key,
     required this.text,
     this.type = DxTextType.p1,
@@ -62,12 +64,14 @@ class DxText extends StatelessWidget {
         return DxTextStyles.primaryFont600(fontSize ?? 18, defaultColor);
       case DxTextType.h6:
         return DxTextStyles.primaryFont500(fontSize ?? 16, defaultColor);
+      case DxTextType.h7:
+        return DxTextStyles.primaryFont700(fontSize ?? 14, defaultColor);
       case DxTextType.p1:
         return DxTextStyles.primaryFont400(fontSize ?? 14, DxColors.neutral200);
       case DxTextType.p2:
         return DxTextStyles.primaryFont400(fontSize ?? 14, defaultColor);
       case DxTextType.p3:
-        return DxTextStyles.primaryFont400(fontSize ?? 12, defaultColor);
+        return DxTextStyles.primaryFont400(fontSize ?? 13, defaultColor);
       case DxTextType.caption:
         return DxTextStyles.primaryFont400(fontSize ?? 12, defaultColor);
       case DxTextType.overline:
