@@ -58,13 +58,12 @@ class _StreamScreenState extends State<StreamScreen> {
                       padding: const EdgeInsets.only(right: 5),
                       child: Tab(
                         child: DxText(
-                          'All Streams',
+                          text: 'All Streams',
                           type: DxTextType.p2,
                           color:
                               _selectedTabIndex == 0
                                   ? Colors.white
                                   : Colors.black,
-                          text: '',
                         ),
                       ),
                     ),
@@ -72,13 +71,12 @@ class _StreamScreenState extends State<StreamScreen> {
                       padding: const EdgeInsets.only(left: 5),
                       child: Tab(
                         child: DxText(
-                          'My Streams',
+                          text: 'My Streams',
                           type: DxTextType.p2,
                           color:
                               _selectedTabIndex == 1
                                   ? Colors.white
                                   : Colors.black,
-                          text: '',
                         ),
                       ),
                     ),

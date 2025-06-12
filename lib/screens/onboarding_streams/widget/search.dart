@@ -25,7 +25,6 @@ class SearchCustom extends StatelessWidget {
               child: DxIcon(DxIcons.search),
             ),
             DxText(
-              '',
               text: 'Search Streams',
               type: DxTextType.p2,
               color: DxColors.grey,

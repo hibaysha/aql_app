@@ -32,7 +32,6 @@ class IconTextWidget extends StatelessWidget {
         DxIcon(icon, color: iconColor, size: iconSize),
         SizedBox(width: spacing),
         DxText(
-          text ?? '',
           text: text ?? '',
           type: textType,
           color: textColor,

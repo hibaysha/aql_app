@@ -15,9 +15,8 @@ class Profile extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          DxText('', text: title, type: DxTextType.h1, color: DxColors.black),
+          DxText(text: title, type: DxTextType.h1, color: DxColors.black),
           DxText(
-            '',
             text: subtitle,
             type: DxTextType.h6,
             color: DxColors.neutral600,

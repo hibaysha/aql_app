@@ -2,7 +2,7 @@ import 'package:aql_app/constants/app_images.dart';
 import 'package:aql_app/core_components/constants/dx_colors.dart';
 
 import 'package:aql_app/provider.dart';
-import 'package:aql_app/screens/home.dart';
+import 'package:aql_app/screens/onboarding_streams/stream_selection.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -52,7 +52,7 @@ class _SigninState extends State<Signin> {
         builder:
             (_) => AlertDialog(
               title: const Text("Sign In Successful"),
-              content: Text("Welcome ${provider.user ?? 'User'}"),
+              content: Text("Welcome ${provider.userName}"),
               actions: [
                 TextButton(
                   child: const Text("OK"),
@@ -60,7 +60,7 @@ class _SigninState extends State<Signin> {
                     Navigator.of(context).pop();
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
+                      MaterialPageRoute(builder: (context) => NextPage()),
                     );
                   },
                 ),

@@ -20,7 +20,7 @@ enum DxTextType {
 }
 
 class DxText extends StatelessWidget {
-  final String text;
+  final String? text;
   final DxTextType type;
   final Color? color;
   final TextAlign? textAlign;
@@ -32,10 +32,9 @@ class DxText extends StatelessWidget {
   final double? height;
   final bool softWrap;
 
-  const DxText(
-    String s, {
+  const DxText({
     super.key,
-    required this.text,
+    this.text,
     this.type = DxTextType.p1,
     this.color,
     this.textAlign,
@@ -86,7 +85,7 @@ class DxText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,
+      text!,
       style: _getTextStyle().copyWith(
         fontWeight: fontWeight,
         letterSpacing: letterSpacing,

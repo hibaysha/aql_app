@@ -19,7 +19,7 @@ class TheAppBr extends StatelessWidget {
         },
         icon: DxIcon(DxIcons.back),
       ),
-      title: DxText(text, text: text, type: DxTextType.h3),
+      title: DxText(text: text, type: DxTextType.h3),
       centerTitle: false,
     );
   }

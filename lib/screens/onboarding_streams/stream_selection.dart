@@ -42,13 +42,11 @@ class _NextPageState extends State<NextPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             DxText(
-              'Streams',
               text: 'Streams',
               type: DxTextType.h2,
               fontWeight: FontWeight.w700,
             ),
             DxText(
-              'Please select streams to enroll',
               text: 'Please select streams to enroll',
               type: DxTextType.p2,
               color: DxColors.grey,
@@ -75,7 +73,6 @@ class _NextPageState extends State<NextPage> {
                   },
                   child: Center(
                     child: DxText(
-                      '',
                       text: 'Skip',
                       type: DxTextType.p2,
                       color: DxColors.skip,

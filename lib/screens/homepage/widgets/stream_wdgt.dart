@@ -37,12 +37,11 @@ class StreamWidget extends StatelessWidget {
               ),
             ),
             DxText(
-              '',
               text: 'Plus two Science',
               type: DxTextType.p2,
               color: DxColors.black,
             ),
-            DxText('', text: '06 Subjects | 84 Chapters', type: DxTextType.p2),
+            DxText(text: '06 Subjects | 84 Chapters', type: DxTextType.p2),
             SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.only(bottom: 13.25),
@@ -59,7 +58,7 @@ class StreamWidget extends StatelessWidget {
                   children: [
                     DxIcon(DxIcons.crown),
                     SizedBox(width: 6),
-                    DxText('', text: 'Subscribe', type: DxTextType.p2),
+                    DxText(text: 'Subscribe', type: DxTextType.p2),
                   ],
                 ),
               ),

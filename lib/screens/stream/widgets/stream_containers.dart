@@ -65,10 +65,9 @@ class StreamContainer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    DxText(title ?? '', text: title ?? '', type: DxTextType.h4),
+                    DxText(text: title ?? '', type: DxTextType.h4),
                     const SizedBox(height: 4),
                     DxText(
-                      subtitle ?? '',
                       text: subtitle ?? '',
                       type: DxTextType.p3,
                       color: DxColors.subtextclr,

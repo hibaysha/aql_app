@@ -1,5 +1,6 @@
 import 'package:aql_app/constants/app_images.dart';
 import 'package:aql_app/constants/dx_icons.dart';
+import 'package:aql_app/constants/global_variables.dart';
 import 'package:aql_app/core_components/constants/dx_colors.dart';
 import 'package:aql_app/core_components/dx_icon.dart';
 import 'package:aql_app/core_components/dx_text.dart';
@@ -72,15 +73,13 @@ class Homepge extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             DxText(
-                              '',
                               text: 'Welcome Back',
                               type: DxTextType.p1,
                               color: DxColors.white,
                             ),
                             DxText(
-                              'Mohammed Ameen',
-                              text: 'Mohammed Ameen',
-                              type: DxTextType.h2,
+                              text: name,
+                              type: DxTextType.h4,
                               color: DxColors.white,
                             ),
                           ],
@@ -210,7 +209,6 @@ class Homepge extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: DxText(
-                    '',
                     text: 'Recent Tests',
                     type: DxTextType.h7,
                     color: DxColors.black,
@@ -225,7 +223,6 @@ class Homepge extends StatelessWidget {
                     );
                   },
                   child: DxText(
-                    '',
                     text: 'See More',
                     type: DxTextType.p2,
                     color: DxColors.skip,
@@ -238,7 +235,7 @@ class Homepge extends StatelessWidget {
           TestCntr(colr: DxColors.red, txt: '40', percent: "0.4"),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: DxText('', text: 'My Streams', type: DxTextType.h7),
+            child: DxText(text: 'My Streams', type: DxTextType.h7),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -269,13 +266,8 @@ class Homepge extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        DxText(text: 'UPSC CSE', type: DxTextType.h6),
                         DxText(
-                          'UPSC CSE',
-                          text: 'UPSC CSE',
-                          type: DxTextType.h6,
-                        ),
-                        DxText(
-                          '6 Subjects | 84 Chapters',
                           text: '6 Subjects | 84 Chapters',
                           type: DxTextType.p3,
                           fontWeight: FontWeight.w500,
@@ -304,10 +296,9 @@ class Homepge extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                DxText('', text: 'All Streams', type: DxTextType.h7),
+                DxText(text: 'All Streams', type: DxTextType.h7),
                 Spacer(),
                 DxText(
-                  '',
                   text: 'See More',
                   type: DxTextType.p2,
                   color: DxColors.stateInformation,

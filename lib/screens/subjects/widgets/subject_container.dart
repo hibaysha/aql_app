@@ -25,7 +25,7 @@ class SubjectContainer extends StatelessWidget {
             SizedBox(width: 20),
             if (image != null) SvgPicture.asset(image!),
             const SizedBox(width: 20),
-            if (text != null) DxText(text!, text: text!, type: DxTextType.h6),
+            if (text != null) DxText(text: text!, type: DxTextType.h6),
           ],
         ),
       ),

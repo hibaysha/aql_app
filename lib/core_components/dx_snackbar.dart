@@ -19,7 +19,6 @@ class DxSnackbar {
           const SizedBox(width: 12),
           Expanded(
             child: DxText(
-              '',
               text: message,
               type: DxTextType.p2,
 

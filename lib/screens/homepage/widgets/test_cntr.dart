@@ -102,14 +102,12 @@ class TestCntr extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     DxText(
-                      '',
                       text: '18/32',
                       type: DxTextType.p2,
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                     ),
                     DxText(
-                      '',
                       text: 'Mark Scored',
                       type: DxTextType.p2,
                       color: DxColors.grey,
@@ -139,14 +137,12 @@ class TestCntr extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         DxText(
-                          '',
                           text: '12:30',
                           type: DxTextType.p2,
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                         ),
                         DxText(
-                          '',
                           text: 'Time Taken',
                           type: DxTextType.p2,
                           color: DxColors.grey,

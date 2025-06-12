@@ -30,12 +30,7 @@ class BorderedTextWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadius),
         border: Border.all(color: borderColor!, width: borderWidth),
       ),
-      child: DxText(
-        '', // Add empty string as first positional argument
-        text: text,
-        type: textType,
-        color: textColor,
-      ),
+      child: DxText(text: text, type: textType, color: textColor),
     );
   }
 }
