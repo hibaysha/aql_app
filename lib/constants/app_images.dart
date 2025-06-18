@@ -8,6 +8,7 @@ class AppImages {
   static const String avatar = "assets/image/profile.image.png";
   static const String mystream = "assets/image/stream.png";
   static const String india = "assets/image/india.png";
+  static const String science = "science.jpeg";
 
   //subjects
   static const String gtube = "assets/image/fi_782711 (1).svg";

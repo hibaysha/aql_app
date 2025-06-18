@@ -4,7 +4,7 @@ import 'package:aql_app/constants/global_variables.dart';
 import 'package:aql_app/core_components/constants/dx_colors.dart';
 import 'package:aql_app/core_components/constants/dx_text_styles.dart';
 import 'package:aql_app/core_components/dx_text.dart';
-import 'package:aql_app/provider.dart';
+import 'package:aql_app/providers/signin_provider.dart';
 import 'package:aql_app/screens/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

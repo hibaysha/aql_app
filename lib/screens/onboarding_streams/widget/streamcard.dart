@@ -1,6 +1,5 @@
 import 'package:aql_app/core_components/constants/dx_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:aql_app/core_components/constants/dx_text_styles.dart';
 
 class StreamCard extends StatelessWidget {
@@ -15,7 +14,8 @@ class StreamCard extends StatelessWidget {
     required this.colorstream,
   });
 
-  bool _isSvg(String path) => path.toLowerCase().endsWith('.svg');
+  bool _isNetworkUrl(String path) =>
+      path.startsWith('http://') || path.startsWith('https://');
 
   @override
   Widget build(BuildContext context) {
@@ -30,23 +30,8 @@ class StreamCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 24.0,
-            ), // More top & bottom space
-            child:
-                _isSvg(imageurl)
-                    ? SvgPicture.asset(
-                      imageurl,
-                      height: 60,
-                      width: 60,
-                      fit: BoxFit.contain,
-                    )
-                    : Image.asset(
-                      imageurl,
-                      height: 60,
-                      width: 60,
-                      fit: BoxFit.contain,
-                    ),
+            padding: const EdgeInsets.symmetric(vertical: 24.0),
+            child: _buildImage(),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -64,5 +49,52 @@ class StreamCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget _buildImage() {
+    if (_isNetworkUrl(imageurl)) {
+      // Network image
+      return Image.network(
+        imageurl,
+        height: 60,
+        width: 60,
+        fit: BoxFit.contain,
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) return child;
+          return Container(
+            height: 60,
+            width: 60,
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Center(
+              child: CircularProgressIndicator(
+                value:
+                    loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
+                            loadingProgress.expectedTotalBytes!
+                        : null,
+                strokeWidth: 2,
+              ),
+            ),
+          );
+        },
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            height: 60,
+            width: 60,
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: const Icon(Icons.broken_image, color: Colors.grey),
+          );
+        },
+      );
+    } else {
+      // Local asset image
+      return Image.asset(imageurl, height: 60, width: 60, fit: BoxFit.contain);
+    }
   }
 }

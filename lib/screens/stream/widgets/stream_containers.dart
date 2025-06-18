@@ -1,3 +1,4 @@
+import 'package:aql_app/constants/app_images.dart';
 import 'package:aql_app/core_components/constants/dx_colors.dart';
 import 'package:aql_app/core_components/dx_text.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class StreamContainer extends StatelessWidget {
     super.key,
     this.title,
     this.subtitle,
-    this.image,
+    this.image = "",
     this.onTap,
     this.color,
     this.svgicon,
@@ -55,7 +56,10 @@ class StreamContainer extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(image!),
+                  child:
+                      image!.isNotEmpty
+                          ? Image.network(image!)
+                          : Image.asset(AppImages.india),
                 ),
               ),
               const SizedBox(width: 12),

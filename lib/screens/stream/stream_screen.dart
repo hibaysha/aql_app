@@ -2,10 +2,13 @@ import 'package:aql_app/constants/app_images.dart';
 import 'package:aql_app/constants/dx_icons.dart';
 import 'package:aql_app/core_components/constants/dx_colors.dart';
 import 'package:aql_app/core_components/dx_text.dart';
+import 'package:aql_app/providers/streams_provider.dart';
 import 'package:aql_app/screens/appbar.dart';
 import 'package:aql_app/screens/onboarding_streams/widget/search.dart';
 import 'package:aql_app/screens/stream/widgets/stream_containers.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 class StreamScreen extends StatefulWidget {
   const StreamScreen({super.key});
@@ -18,6 +21,13 @@ class _StreamScreenState extends State<StreamScreen> {
   int _selectedTabIndex = 0;
 
   @override
+  void initState() {
+    debugPrint("inital function worked");
+    Provider.of<StreamsProvider>(context, listen: false).fetchStreamData();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
@@ -26,11 +36,8 @@ class _StreamScreenState extends State<StreamScreen> {
         body: Column(
           children: [
             TheAppBr(text: 'Streams'),
-
             SearchCustom(),
-
             const SizedBox(height: 20),
-
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
               child: Container(
@@ -84,9 +91,7 @@ class _StreamScreenState extends State<StreamScreen> {
                 ),
               ),
             ),
-
             const SizedBox(height: 20),
-
             Expanded(
               child: TabBarView(
                 children: [_buildAllStreamsTab(), _buildMyStreamsTab()],
@@ -99,93 +104,137 @@ class _StreamScreenState extends State<StreamScreen> {
   }
 
   Widget _buildAllStreamsTab() {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        children: [
-          StreamContainer(
-            title: 'UPSC CSE',
-            subtitle: '6 Subjects | 84 Chapters',
-            image: AppImages.india,
-            color: DxColors.greencontainer,
-            svgicon: DxIcons.tick,
-            circleclr: DxColors.circlgreen.withOpacity(.2),
-          ),
-          const SizedBox(height: 15),
-          StreamContainer(
-            title: 'NEET',
-            subtitle: '6 Subjects | 84 Chapters',
-            image: AppImages.india,
-            color: DxColors.ylwcontainer,
-            svgicon: DxIcons.crown,
-            circleclr: DxColors.circleicon.withOpacity(.2),
-          ),
-          const SizedBox(height: 15),
-          StreamContainer(
-            title: 'NEET',
-            subtitle: '6 Subjects | 84 Chapters',
-            image: AppImages.india,
-            color: DxColors.ylwcontainer,
-            svgicon: DxIcons.crown,
-            circleclr: DxColors.circleicon.withOpacity(.2),
-          ),
-          const SizedBox(height: 15),
-          StreamContainer(
-            title: 'UPSC CSE',
-            subtitle: '6 Subjects | 84 Chapters',
-            image: AppImages.neet,
-            color: DxColors.ylwcontainer,
-            svgicon: DxIcons.crown,
-            circleclr: DxColors.circleicon.withOpacity(.2),
-          ),
-          const SizedBox(height: 15),
-          StreamContainer(
-            title: 'NEET',
-            subtitle: '6 Subjects | 84 Chapters',
-            image: AppImages.india,
-            color: DxColors.ylwcontainer,
-            svgicon: DxIcons.crown,
-            circleclr: DxColors.circleicon.withOpacity(.2),
-          ),
-          const SizedBox(height: 15),
-          StreamContainer(
-            title: 'NEET',
-            subtitle: '6 Subjects | 84 Chapters',
-            image: AppImages.india,
-            color: DxColors.ylwcontainer,
-            svgicon: DxIcons.crown,
-            circleclr: DxColors.circleicon.withOpacity(.2),
-          ),
-        ],
-      ),
+    return Consumer<StreamsProvider>(
+      builder: (context, provider, _) {
+        if (provider.isStreamLoading) {
+          return _buildShimmerList();
+        }
+
+        return ListView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          itemCount: provider.streamResponse.response.length,
+          itemBuilder: (context, index) {
+            final stream = provider.streamResponse.response[index];
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 15),
+              child: StreamContainer(
+                title: stream.title,
+                subtitle:
+                    '${stream.subjectCount} Subjects | ${stream.topicCount} Chapters',
+                image: getStreamImageUrl(stream.logo),
+                color:
+                    stream.isPaid == true
+                        ? DxColors.greencontainer
+                        : DxColors.ylwcontainer,
+                svgicon: stream.isPaid == true ? DxIcons.tick : DxIcons.crown,
+                circleclr:
+                    stream.isPaid == true
+                        ? DxColors.circlgreen.withOpacity(.2)
+                        : DxColors.circleicon.withOpacity(.2),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 
   Widget _buildMyStreamsTab() {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        children: [
-          // Example user's stream containers
-          StreamContainer(
-            title: 'UPSC CSE',
-            subtitle: '6 Subjects | 84 Chapters',
-            image: AppImages.india,
-            color: DxColors.greencontainer,
-            svgicon: DxIcons.tick,
-            circleclr: DxColors.circlgreen.withOpacity(.2),
-          ),
-          const SizedBox(height: 15),
-          StreamContainer(
-            title: 'UPSC CSE',
-            subtitle: '6 Subjects | 84 Chapters',
-            image: AppImages.india,
-            color: DxColors.greencontainer,
-            svgicon: DxIcons.tick,
-            circleclr: DxColors.circlgreen.withOpacity(.2),
-          ),
-        ],
-      ),
+    return Consumer<StreamsProvider>(
+      builder: (context, provider, _) {
+        if (provider.isStreamLoading) {
+          return _buildShimmerList();
+        }
+
+        final myStreams =
+            provider.streamResponse.response
+                .where((stream) => stream.isPaid)
+                .toList();
+
+        if (myStreams.isEmpty) {
+          return const Center(child: Text('No enrolled streams'));
+        }
+
+        return ListView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          itemCount: myStreams.length,
+          itemBuilder: (context, index) {
+            final stream = myStreams[index];
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 15),
+              child: StreamContainer(
+                title: stream.title,
+                subtitle:
+                    '${stream.subjectCount} Subjects | ${stream.topicCount} Chapters',
+                image: getStreamImageUrl(stream.logo) ?? AppImages.india,
+                color: DxColors.greencontainer,
+                svgicon: DxIcons.tick,
+                circleclr: DxColors.circlgreen.withOpacity(.2),
+              ),
+            );
+          },
+        );
+      },
     );
+  }
+
+  Widget _buildShimmerList() {
+    return ListView.builder(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      itemCount: 6,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 15),
+          child: Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: DxColors.greyborder),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    width: 48,
+                    height: 48,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 14,
+                          width: 120,
+                          color: Colors.grey[300],
+                        ),
+                        const SizedBox(height: 8),
+                        Container(
+                          height: 10,
+                          width: 180,
+                          color: Colors.grey[300],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  String getStreamImageUrl(String? logo) {
+    if (logo == null || logo.isEmpty) return '';
+    return 'https://event-manager.syd1.cdn.digitaloceanspaces.com/$logo';
   }
 }
