@@ -1,5 +1,3 @@
-//login, sharedpreference
-
 import 'package:aql_app/constants/global_variables.dart';
 import 'package:aql_app/models/login_model.dart';
 import 'package:aql_app/models/steamlist_model.dart';
@@ -46,21 +44,26 @@ class SignInProvider with ChangeNotifier {
       );
 
       if (response.statusCode == 200) {
-        // final responseBody = jsonDecode(response.body);
         _loginResponse = streamItemFromJson(response.body);
-        // debugPrint(responseBody.user.e);
 
         final isSuccess = _loginResponse?.success == true;
 
         if (isSuccess && _loginResponse?.user != null) {
           final data = _loginResponse?.user;
 
+          // Extract and assign data to global variables
           name = data?.fullName ?? '';
           email = data?.email ?? '';
           studentId = data?.student ?? '';
-          _loginResponse!.user;
-          _loginResponse!.token;
+          authToken = _loginResponse?.token ?? ''; // This was missing!
+          userId = data?.id?.toString() ?? ''; // Adjust field name as needed
 
+          // Debug prints to verify data
+          debugPrint('Token from response: ${_loginResponse?.token}');
+          debugPrint('Assigned authToken: $authToken');
+          debugPrint('User name: $name');
+
+          // Save to SharedPreferences
           final prefs = await SharedPreferences.getInstance();
           await prefs.setString('token', authToken);
           await prefs.setString('userName', name);
@@ -94,27 +97,24 @@ class SignInProvider with ChangeNotifier {
 
   Future<void> loadFromPrefs() async {
     final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('token') ?? '';
 
     authToken = prefs.getString('token') ?? '';
     name = prefs.getString('userName') ?? '';
     email = prefs.getString('userEmail') ?? '';
     studentId = prefs.getString('studentId') ?? '';
     userId = prefs.getString('userId') ?? '';
-    authToken = token;
+
+    // Debug prints to verify loading
+    debugPrint('Loaded authToken: $authToken');
+    debugPrint('Loaded name: $name');
+    debugPrint('Is authenticated: ${authToken.isNotEmpty}');
+
     notifyListeners();
   }
 
-  void signOut() async {
+  Future<void> signOut() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.clear();
-
-    name = '';
-    email = '';
-    studentId = '';
-    userId = '';
-    authToken = '';
-    _errorMessage = null;
 
     notifyListeners();
   }

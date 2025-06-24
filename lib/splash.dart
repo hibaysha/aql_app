@@ -1,4 +1,5 @@
-import 'package:aql_app/constants/global_variables.dart';
+import 'package:aql_app/constants/app_images.dart';
+import 'package:aql_app/core_components/constants/dx_colors.dart';
 import 'package:aql_app/nav.dart';
 import 'package:aql_app/providers/signin_provider.dart';
 import 'package:aql_app/screens/signin.dart';
@@ -6,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class StartupScreen extends StatefulWidget {
-  const StartupScreen({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<StartupScreen> createState() => _StartupScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _StartupScreenState extends State<StartupScreen> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
@@ -51,6 +52,42 @@ class _StartupScreenState extends State<StartupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    return Scaffold(
+      backgroundColor: DxColors.white,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // logo
+            Container(
+              width: 120,
+              height: 120,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 10,
+                    offset: const Offset(0, 5),
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.asset(AppImages.logo, fit: BoxFit.contain),
+              ),
+            ),
+
+            const SizedBox(height: 48),
+
+            // Loading indicator
+            const CircularProgressIndicator(
+              strokeWidth: 3,
+              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF4CAF50)),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

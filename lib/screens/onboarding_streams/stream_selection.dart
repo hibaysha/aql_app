@@ -20,7 +20,12 @@ class _SelectStreamState extends State<SelectStream> {
   @override
   void initState() {
     super.initState();
-    Provider.of<StreamsProvider>(context, listen: false).fetchStreamData();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<StreamsProvider>(
+        context,
+        listen: false,
+      ).fetchStreamData(context);
+    });
   }
 
   String getStreamImageUrl(String? logo) {
@@ -147,8 +152,12 @@ class _SelectStreamState extends State<SelectStream> {
             );
           }
 
-          final streams = provider.streamResponse.response;
+          if (provider.streamResponse == null ||
+              provider.streamResponse?.response == null) {
+            return const Center(child: Text('No streams available'));
+          }
 
+          final streams = provider.streamResponse?.response;
           if (streams == null || streams.isEmpty) {
             return const Center(child: Text('No streams available'));
           }

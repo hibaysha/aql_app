@@ -36,42 +36,44 @@ class _IconTextDropdownRowState extends State<IconTextDropdownRow> {
                   ? () => setState(() => _isExpanded = !_isExpanded)
                   : null,
           borderRadius: BorderRadius.circular(8),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: Colors.white,
-              border: Border.all(color: Colors.grey.shade300, width: 1),
-            ),
-            child: Row(
-              children: [
-                // SVG Icon - removed color to show original colors
-                SvgPicture.asset(widget.svgPath, height: 24, width: 24),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    widget.text,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
+          child: Center(
+            child: Container(
+              height: 50,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.white,
+                border: Border.all(color: Colors.grey.shade300, width: 1),
+              ),
+              child: Row(
+                children: [
+                  SvgPicture.asset(widget.svgPath, height: 24, width: 24),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      widget.text,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
-                ),
-                // Dropdown arrow
-                if (_hasValidItems)
-                  Icon(
-                    _isExpanded
-                        ? Icons.keyboard_arrow_up
-                        : Icons.keyboard_arrow_down,
-                    color: Colors.grey.shade600,
-                  ),
-              ],
+                  // dropdown arrow
+                  if (_hasValidItems)
+                    Icon(
+                      _isExpanded
+                          ? Icons.keyboard_arrow_up
+                          : Icons.keyboard_arrow_down,
+                      color: Colors.grey.shade600,
+                    ),
+                ],
+              ),
             ),
           ),
         ),
         if (_isExpanded && _hasValidItems)
           Positioned(
-            top: 55, // Position below the main container
+            top: 55, // to position below the main container
             left: 0,
             right: 0,
             child: Material(
@@ -97,8 +99,8 @@ class _IconTextDropdownRowState extends State<IconTextDropdownRow> {
                               child: Container(
                                 width: double.infinity,
                                 padding: const EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                  vertical: 12,
+                                  horizontal: 23,
+                                  vertical: 10,
                                 ),
                                 child: Text(
                                   item,

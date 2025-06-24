@@ -15,11 +15,14 @@ class DxColors {
   static const Color ppink = Color(0xffffecf3);
 
   static const Color bgclr = Color(0xfff9f8f8);
+  static const Color bgclr1 = Color(0xfffdfdfd);
 
   static const Color skip = Color(0xff14bf9e);
   static const Color notifsred = Color(0xffd72344);
   static const Color skipcontnr = Color(0xffeffffc);
   static const Color circlgreen = Color(0xff27bb50);
+  static const Color greencndr = Color(0xff14bf9e);
+
   static const Color streamcntnr = Color(0xfffff5e7);
   static const Color red = Color(0xffff3b30);
   static const Color greencntr = Color(0xffecfff0);
@@ -31,6 +34,8 @@ class DxColors {
   static const Color circleicon = Color(0xffffb743);
   static const Color ylwcontainer = Color(0xfffff5e7);
   static const Color greencontainer = Color(0xffecfff0);
+  static const Color greyiconbg = Color(0xfff4f4f4);
+  static const Color subhead = Color(0xff525866);
 
   // Transparent colors
   static const Color transparent = Colors.transparent;

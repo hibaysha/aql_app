@@ -1,5 +1,8 @@
 class AppImages {
-  static const String boyimage = "assets/image/IMG_6110.png";
+  //logo
+  static const String logo = "assets/logo/aql_logo.png";
+
+  static const String boyimage = "assets/image/IMG_6110.jpg";
   static const String cat = "assets/image/image 2.png";
   static const String neet = "assets/image/image 3.png";
   static const String gate = "assets/image/image 5.png";

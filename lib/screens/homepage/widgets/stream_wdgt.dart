@@ -6,12 +6,19 @@ import 'package:aql_app/core_components/dx_text.dart';
 import 'package:flutter/material.dart';
 
 class StreamWidget extends StatelessWidget {
-  const StreamWidget({super.key, required int index});
+  final int index;
+  const StreamWidget({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      //to get padding after last container-- give condition on right.
+      padding: EdgeInsets.only(
+        left: 20,
+        top: 8,
+        bottom: 8,
+        right: index == 4 ? 20 : 0,
+      ),
       child: Container(
         height: 230,
         width: 195,
@@ -47,7 +54,7 @@ class StreamWidget extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 13.25),
               child: Container(
                 height: 33,
-                width: double.infinity,
+                width: 135,
                 decoration: BoxDecoration(
                   border: Border.all(color: DxColors.greyborder),
                   borderRadius: BorderRadius.circular(9),

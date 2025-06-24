@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:aql_app/constants/app_images.dart';
 import 'package:aql_app/constants/dx_icons.dart';
 import 'package:aql_app/constants/global_variables.dart';
@@ -5,8 +7,9 @@ import 'package:aql_app/core_components/constants/dx_colors.dart';
 import 'package:aql_app/core_components/constants/dx_text_styles.dart';
 import 'package:aql_app/core_components/dx_text.dart';
 import 'package:aql_app/providers/signin_provider.dart';
-import 'package:aql_app/screens/signin.dart';
+import 'package:aql_app/splash.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:svg_flutter/svg.dart';
 
@@ -18,6 +21,8 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
+  File? _selectedImage;
+  final ImagePicker _picker = ImagePicker();
   @override
   void initState() {
     super.initState();
@@ -25,6 +30,79 @@ class _MyProfileState extends State<MyProfile> {
       final provider = Provider.of<SignInProvider>(context, listen: false);
       provider.loadFromPrefs();
     });
+  }
+
+  void _showSignOutDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false, // Prevent dismissing by tapping outside
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          title: Row(
+            children: [
+              Text(
+                'Sign Out',
+                style: DxTextStyles.primaryFont600(18, DxColors.neutral900),
+              ),
+            ],
+          ),
+          content: Text(
+            'Do you want to sign out?',
+            style: DxTextStyles.primaryFont400(16, DxColors.neutral700),
+          ),
+          actions: [
+            // Stay button
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              child: Text(
+                'Stay',
+                style: DxTextStyles.primaryFont500(16, DxColors.neutral600),
+              ),
+            ),
+
+            // Sign out button
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                Provider.of<SignInProvider>(context, listen: false).signOut();
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => SplashScreen()),
+                  (route) => false,
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              child: Text(
+                'Sign Out',
+                style: DxTextStyles.primaryFont500(16, Colors.red),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -50,27 +128,43 @@ class _MyProfileState extends State<MyProfile> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20, bottom: 25),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          DxText(
-                            text: name,
-                            type: DxTextType.h4,
-                            color: DxColors.white,
+                    // Container(
+                    //   height: 52,
+                    //   width: 52,
+                    //   padding: const EdgeInsets.all(4),
+                    //   decoration: BoxDecoration(
+                    //     shape: BoxShape.circle,
+                    //     border: Border.all(color: DxColors.white, width: 2),
+                    //   ),
+                    //   child: const CircleAvatar(
+                    //     backgroundImage: AssetImage(AppImages.avatar),
+                    //   ),
+                    // ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20, bottom: 25),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              DxText(
+                                text: name,
+                                type: DxTextType.h4,
+                                color: DxColors.white,
+                              ),
+                              DxText(
+                                text: email,
+                                type: DxTextType.p2,
+                                color: DxColors.white,
+                              ),
+                            ],
                           ),
-                          DxText(
-                            text: email,
-                            type: DxTextType.p2,
-                            color: DxColors.white,
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -78,12 +172,7 @@ class _MyProfileState extends State<MyProfile> {
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: GestureDetector(
-                  onTap: () {
-                    Provider.of<SignInProvider>(
-                      context,
-                      listen: false,
-                    ).signOut();
-                  },
+                  onTap: _showSignOutDialog, // Show confirmation dialog
                   child: Container(
                     height: 52,
                     width: double.infinity,
@@ -96,24 +185,11 @@ class _MyProfileState extends State<MyProfile> {
                         const SizedBox(width: 12),
                         SvgPicture.asset(DxIcons.signout),
                         const SizedBox(width: 12),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => Signin()),
-                            );
-                          },
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                            minimumSize: Size.zero,
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          ),
-                          child: Text(
-                            'Sign Out',
-                            style: DxTextStyles.primaryFont500(
-                              16,
-                              DxColors.neutral900,
-                            ),
+                        Text(
+                          'Sign Out',
+                          style: DxTextStyles.primaryFont500(
+                            16,
+                            DxColors.neutral900,
                           ),
                         ),
                       ],
@@ -128,9 +204,3 @@ class _MyProfileState extends State<MyProfile> {
     );
   }
 }
-//  onPressed: () {
-//                             Provider.of<SignInProvider>(
-//                               context,
-//                               listen: false,
-//                             ).signOut();
-//                           },

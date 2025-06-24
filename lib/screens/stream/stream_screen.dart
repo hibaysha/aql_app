@@ -1,4 +1,3 @@
-import 'package:aql_app/constants/app_images.dart';
 import 'package:aql_app/constants/dx_icons.dart';
 import 'package:aql_app/core_components/constants/dx_colors.dart';
 import 'package:aql_app/core_components/dx_text.dart';
@@ -23,7 +22,10 @@ class _StreamScreenState extends State<StreamScreen> {
   @override
   void initState() {
     debugPrint("inital function worked");
-    Provider.of<StreamsProvider>(context, listen: false).fetchStreamData();
+    Provider.of<StreamsProvider>(
+      context,
+      listen: false,
+    ).fetchStreamData(context);
     super.initState();
   }
 
@@ -37,7 +39,7 @@ class _StreamScreenState extends State<StreamScreen> {
           children: [
             TheAppBr(text: 'Streams'),
             SearchCustom(),
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
               child: Container(
@@ -91,7 +93,7 @@ class _StreamScreenState extends State<StreamScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
             Expanded(
               child: TabBarView(
                 children: [_buildAllStreamsTab(), _buildMyStreamsTab()],
@@ -112,9 +114,9 @@ class _StreamScreenState extends State<StreamScreen> {
 
         return ListView.builder(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          itemCount: provider.streamResponse.response.length,
+          itemCount: provider.streamResponse!.response.length,
           itemBuilder: (context, index) {
-            final stream = provider.streamResponse.response[index];
+            final stream = provider.streamResponse!.response[index];
             return Padding(
               padding: const EdgeInsets.only(bottom: 15),
               child: StreamContainer(
@@ -147,7 +149,7 @@ class _StreamScreenState extends State<StreamScreen> {
         }
 
         final myStreams =
-            provider.streamResponse.response
+            provider.streamResponse!.response
                 .where((stream) => stream.isPaid)
                 .toList();
 
@@ -166,7 +168,7 @@ class _StreamScreenState extends State<StreamScreen> {
                 title: stream.title,
                 subtitle:
                     '${stream.subjectCount} Subjects | ${stream.topicCount} Chapters',
-                image: getStreamImageUrl(stream.logo) ?? AppImages.india,
+                image: getStreamImageUrl(stream.logo),
                 color: DxColors.greencontainer,
                 svgicon: DxIcons.tick,
                 circleclr: DxColors.circlgreen.withOpacity(.2),

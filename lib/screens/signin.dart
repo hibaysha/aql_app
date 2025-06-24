@@ -162,12 +162,7 @@ class _SigninState extends State<Signin> {
                             child: ElevatedButton(
                               onPressed: loginUser,
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color.fromARGB(
-                                  255,
-                                  73,
-                                  186,
-                                  147,
-                                ),
+                                backgroundColor: DxColors.skip,
                                 padding: const EdgeInsets.all(18),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15),
@@ -175,7 +170,11 @@ class _SigninState extends State<Signin> {
                               ),
                               child: const Text(
                                 'Sign In',
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
                             ),
                           ),
@@ -184,10 +183,19 @@ class _SigninState extends State<Signin> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
-                            Text("Don't have an account? "),
+                            Text(
+                              "Don't have an account? ",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
                             Text(
                               'Sign up',
-                              style: TextStyle(color: Colors.blue),
+                              style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ],
                         ),
